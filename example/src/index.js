@@ -83,7 +83,7 @@ class Test extends Component {
               </div>
             </pre>
           </div>
-          <ReactTooltip id='main' arrow='left' absPos={{x: 0}} place={place} type={type} effect={effect} multiline={true}/>
+          <ReactTooltip id='main' arrowPos='left' absPos={{x: 0}} place={place} type={type} effect={effect} multiline={true}/>
         </section>
         <section className="advance">
           <div className="section">
