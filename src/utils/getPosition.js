@@ -26,18 +26,6 @@ export default function (e, target, node, place, effect, offset, absPos) {
 
   const {parentTop, parentLeft} = getParent(node)
 
-  if (absPos)
-  {
-    return {
-      isNewState: false,
-      position: {
-        left: absPos.x != null ? absPos.x : parseInt(getTipOffsetLeft(place) - parentLeft, 10),
-        top: absPos.y  != null ? absPos.y : parseInt(getTipOffsetTop(place) - parentTop, 10)
-      }
-    }
-  }
-
-
   // Get the edge offset of the tooltip
   const getTipOffsetLeft = (place) => {
     const offset_X = defaultOffset[place].l
@@ -140,6 +128,17 @@ export default function (e, target, node, place, effect, offset, absPos) {
   const outsideRightResult = outsideRight()
   const outsideTopResult = outsideTop()
   const outsideBottomResult = outsideBottom()
+
+  if (absPos)
+  {
+    return {
+      isNewState: false,
+      position: {
+        left: absPos.x != null ? absPos.x : parseInt(getTipOffsetLeft(place) - parentLeft, 10),
+        top: absPos.y  != null ? absPos.y : parseInt(getTipOffsetTop(place) - parentTop, 10)
+      }
+    }
+  }
 
   if (place === 'left' && outsideLeftResult.result) {
     return {
