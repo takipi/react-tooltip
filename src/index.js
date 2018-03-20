@@ -290,7 +290,7 @@ class ReactTooltip extends Component {
         ? e.currentTarget.getAttribute('data-tip-disable') === 'true'
         : (this.props.disable || false),
       arrowPos: e.currentTarget.getAttribute('arrowPos') || this.props.arrowPos,
-      absPos: e.currentTarget.getAttribute('absPos') || this.props.absPos,
+      absPos: e.currentTarget.getAttribute('absPos') || this.props.absPos
     }, () => {
       if (scrollHide) this.addScrollListener(e)
       this.updateTooltip(e)
@@ -444,8 +444,8 @@ class ReactTooltip extends Component {
       {'type-error': this.state.type === 'error'},
       {'type-info': this.state.type === 'info'},
       {'type-light': this.state.type === 'light'},
-      {'arrow-left': this.state.arrowPos === 'left' },
-      {'arrow-right': this.state.arrowPos === 'right' }
+      {'arrow-left': this.state.arrowPos === 'left'},
+      {'arrow-right': this.state.arrowPos === 'right'}
     )
 
     let Wrapper = this.props.wrapper

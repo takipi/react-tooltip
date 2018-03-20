@@ -129,13 +129,12 @@ export default function (e, target, node, place, effect, offset, absPos) {
   const outsideTopResult = outsideTop()
   const outsideBottomResult = outsideBottom()
 
-  if (absPos)
-  {
+  if (absPos) {
     return {
       isNewState: false,
       position: {
         left: absPos.x != null ? absPos.x : parseInt(getTipOffsetLeft(place) - parentLeft, 10),
-        top: absPos.y  != null ? absPos.y : parseInt(getTipOffsetTop(place) - parentTop, 10)
+        top: absPos.y != null ? absPos.y : parseInt(getTipOffsetTop(place) - parentTop, 10)
       }
     }
   }
