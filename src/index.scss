@@ -191,6 +191,22 @@
       margin-top: -4px;
     }
   }
+  &.arrow-left {
+    &:before {
+      left: 20%;
+    }
+    &:after {
+      left: 20%;
+      }
+  }
+  &.arrow-right {
+    &:before {
+          left: 80%;
+    }
+    &:after {
+          left: 80%;
+    }
+  }
   .multi-line {
     display: block;
     padding: 2px 0px;

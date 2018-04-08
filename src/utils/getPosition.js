@@ -14,7 +14,7 @@
  * - `newState` {Object}
  * - `position` {OBject} {left: {Number}, top: {Number}}
  */
-export default function (e, target, node, place, effect, offset) {
+export default function (e, target, node, place, effect, offset, absPos) {
   const tipWidth = node.clientWidth
   const tipHeight = node.clientHeight
   const {mouseX, mouseY} = getCurrentOffset(e, target, effect)
@@ -128,6 +128,16 @@ export default function (e, target, node, place, effect, offset) {
   const outsideRightResult = outsideRight()
   const outsideTopResult = outsideTop()
   const outsideBottomResult = outsideBottom()
+
+  if (absPos) {
+    return {
+      isNewState: false,
+      position: {
+        left: absPos.x != null ? absPos.x : parseInt(getTipOffsetLeft(place) - parentLeft, 10),
+        top: absPos.y != null ? absPos.y : parseInt(getTipOffsetTop(place) - parentTop, 10)
+      }
+    }
+  }
 
   if (place === 'left' && outsideLeftResult.result) {
     return {

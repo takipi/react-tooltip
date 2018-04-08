@@ -56,7 +56,9 @@ class ReactTooltip extends Component {
     disable: PropTypes.bool,
     scrollHide: PropTypes.bool,
     resizeHide: PropTypes.bool,
-    wrapper: PropTypes.string
+    wrapper: PropTypes.string,
+    absPos: PropTypes.object,
+    arrowPos: PropTypes.string
   };
 
   static defaultProps = {
@@ -286,7 +288,9 @@ class ReactTooltip extends Component {
       extraClass: e.currentTarget.getAttribute('data-class') || this.props.class || this.props.className || '',
       disable: e.currentTarget.getAttribute('data-tip-disable')
         ? e.currentTarget.getAttribute('data-tip-disable') === 'true'
-        : (this.props.disable || false)
+        : (this.props.disable || false),
+      arrowPos: e.currentTarget.getAttribute('arrowPos') || this.props.arrowPos,
+      absPos: e.currentTarget.getAttribute('absPos') || this.props.absPos
     }, () => {
       if (scrollHide) this.addScrollListener(e)
       this.updateTooltip(e)
@@ -387,9 +391,9 @@ class ReactTooltip extends Component {
 
   // Calculation the position
   updatePosition () {
-    const {currentEvent, currentTarget, place, effect, offset} = this.state
+    const {currentEvent, currentTarget, place, effect, offset, absPos} = this.state
     const node = ReactDOM.findDOMNode(this)
-    const result = getPosition(currentEvent, currentTarget, node, place, effect, offset)
+    const result = getPosition(currentEvent, currentTarget, node, place, effect, offset, absPos)
 
     if (result.isNewState) {
       // Switch to reverse placement
@@ -439,7 +443,9 @@ class ReactTooltip extends Component {
       {'type-warning': this.state.type === 'warning'},
       {'type-error': this.state.type === 'error'},
       {'type-info': this.state.type === 'info'},
-      {'type-light': this.state.type === 'light'}
+      {'type-light': this.state.type === 'light'},
+      {'arrow-left': this.state.arrowPos === 'left'},
+      {'arrow-right': this.state.arrowPos === 'right'}
     )
 
     let Wrapper = this.props.wrapper
